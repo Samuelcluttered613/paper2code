@@ -49,6 +49,17 @@ The result: code you can trust because you can verify every decision against the
 npx skills add PrathamLearnsToCode/paper2code/skills/paper2code
 ```
 
+You'll be prompted to:
+1. **Select agents** — pick the coding agents you want to use this skill with (e.g., Claude Code)
+2. **Choose scope** — Global (recommended) or project-level
+3. **Choose method** — Symlink (recommended) or copy
+
+Once installed, open your agent and run the skill:
+
+```bash
+claude  # or your preferred agent
+```
+
 ---
 
 ## Usage
